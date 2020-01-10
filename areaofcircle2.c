@@ -11,27 +11,38 @@ float areaOfCircle(float r)
 }
 
 int main()
-{
-  char input1[256], lim1[256];
-
-  printf("Lower Limit: ");
-  fgets(input1, 256, stdin);
-  sscanf(input1, "%s", lim1);
-
-  printf("Lower Limit: %s\n", lim1);
-
-  char input2[256], lim2[256];
-
-  printf("Uper Limit: ");
-  fgets(input2, 256, stdin);
-  sscanf(input2, "%s", lim2);
-
-  printf("Upper Limit: %s\n", lim2);
+{  
+  float lowerLimit;
+  char input1[256];
   
-  float s = lim1;
-  float l = lim2;
+  printf("Lower limit: ");
+  while (1)
+  {
+    fgets(input1, 256, stdin);
+    if (sscanf(input1, "%f", &lowerLimit) == 1) {
+      if ( lowerLimit > 0 ) {
+	break;
+      }
+    }
+    printf("Not a valid Number. Please enter a valid number.\n");
+  }
 
-  for ( r = 3.5; r <= 12.5; r++ )
+  float upperLimit;
+  char input2[256];
+
+  printf("Upper limit: ");
+  while (1)
+  {
+    fgets(input2, 256, stdin);
+    if (sscanf(input2, "%f", &upperLimit) == 1) {
+      if ( upperLimit > lowerLimit) {
+	break;
+      }
+    }
+    printf("Not a valid Number. Please enter a valid number.\n");
+  }
+  
+  for ( r = lowerLimit; r <= upperLimit; r++ )
   {
     a = areaOfCircle(r);
     printf("Radius = %f, Area = %f\n", r, a);
